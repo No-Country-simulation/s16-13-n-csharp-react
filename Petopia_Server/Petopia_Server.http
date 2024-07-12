@@ -1,0 +1,6 @@
+@Petopia_Server_HostAddress = http://localhost:5118
+
+GET {{Petopia_Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

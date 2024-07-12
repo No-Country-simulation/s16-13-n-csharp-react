@@ -1,0 +1,11 @@
+#Static Files
+
+#VS Files
+.vs
+Petopia_Server/.vs
+
+#Frontend Dependencies
+
+#Backend Dependencies
+Petopia_Server/bin
+Petopia_Server/obj
