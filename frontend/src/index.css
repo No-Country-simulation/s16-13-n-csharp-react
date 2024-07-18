@@ -2,114 +2,85 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    /* text and background */
+    --color-bg: 249 252 250;
+    --color-text: 2 18 10;
+    /* primary light colors */
+    --color-primary-light: 242 252 253;
+    --color-primary-light-hover: 235 250 252;
+    --color-primary-light-active: 214 244 249;
+    --color-primary-normal: 123 220 236;
+    --color-primary-normal-hover: 111 198 212;
+    --color-primary-normal-active: 98 176 189;
+    --color-primary-dark: 92 165 177;
+    --color-primary-dark-hover: 74 132 142;
+    --color-primary-dark-active: 55 99 106;
+    --color-primary-darker: 43 77 83;
+    /* secondary light colors */
+    --color-secondary-light: 235 252 243;
+    --color-secondary-light-hover: 225 251 237;
+    --color-secondary-light-active: 192 246 217;
+    --color-secondary-normal: 52 226 134;
+    --color-secondary-normal-hover: 47 203 121;
+    --color-secondary-normal-active: 42 181 107;
+    --color-secondary-dark: 39 170 101;
+    --color-secondary-dark-hover: 31 136 80;
+    --color-secondary-dark-active: 23 102 60;
+    --color-secondary-darker: 18 79 47;
+    /* accent light colors */
+    --color-accent-light: 235 252 243;
+    --color-accent-light-hover: 225 251 237;
+    --color-accent-light-active: 192 246 217;
+    --color-accent-normal: 52 226 134;
+    --color-accent-normal-hover: 47 203 121;
+    --color-accent-normal-active: 42 181 107;
+    --color-accent-dark: 39 170 101;
+    --color-accent-dark-hover: 31 136 80;
+    --color-accent-dark-active: 23 102 60;
+    --color-accent-darker: 18 79 47;
   }
-  a:hover {
-    color: #747bff;
+  
+  /* dark color theme */
+  @media (prefers-color-scheme: dark) {
+    :root [data-theme="dark"] {
+      /* text and background */
+      --color-bg: 2 18 11;
+      --color-text: 249 252 250;
+      /* primary light colors */
+      --color-primary-light: 231 241 243;
+      --color-primary-light-hover: 220 235 237;
+      --color-primary-light-active: 182 213 217;
+      --color-primary-normal: 19 119 134;
+      --color-primary-normal-hover: 17 107 121;
+      --color-primary-normal-active: 15 95 107;
+      --color-primary-dark: 14 89 101;
+      --color-primary-dark-hover: 11 71 80;
+      --color-primary-dark-active: 9 54 60;
+      --color-primary-darker: 7 42 47;
+      /* secondary light colors */
+      --color-secondary-light: 232 250 240;
+      --color-secondary-light-hover: 221 247 233;
+      --color-secondary-light-active: 185 238 210;
+      --color-secondary-normal: 29 201 109;
+      --color-secondary-normal-hover: 26 181 98;
+      --color-secondary-normal-active: 23 161 87;
+      --color-secondary-dark: 22 151 82;
+      --color-secondary-dark-hover: 17 121 65;
+      --color-secondary-dark-active: 13 90 49;
+      --color-secondary-darker: 10 70 38;
+      /* accent light colors */
+      --color-accent-light: 236 250 243;
+      --color-accent-light-hover: 226 248 236;
+      --color-accent-light-active: 195 240 216;
+      --color-accent-normal: 63 207 130;
+      --color-accent-normal-hover: 57 186 117;
+      --color-accent-normal-active: 50 166 104;
+      --color-accent-dark: 47 155 98;
+      --color-accent-dark-hover: 38 124 78;
+      --color-accent-dark-active: 28 93 58;
+      --color-accent-darker: 22 72 46;
+    }
   }
-  button {
-    background-color: #f9f9f9;
-  }
-}
-
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
