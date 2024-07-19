@@ -1,5 +1,7 @@
 # **Petopia** 
-A completar 
+![Logo](https://github.com/elibelu/pruebas/blob/main/img/dog.png)
+Somos una aplicación web que te permitirá recordarte las visitas al veterinario, sus vacunas, desparatizaciones, sus datos personales y tengas el historial médico de tu mascota, ¡todo en un sólo lugar!
+Porque tu mascota es parte de tu familia. 
 
 ## Presentación del Sitio
 
@@ -20,13 +22,19 @@ Proyecto para No Country Julio 2024
  > Grupo: s16-13-n-csharp-react
 
 ### Rubro: 
-PetTech
+PetTech orientado a la salud
 
 ### Descripción: 
 Las características generales son:
-- 
-- 
-- 
+- Registro de la persona dueña de la mascota: Podrás colocar tus datos principales para que tu mascota te pueda ser entregada en caso de que se pierda.
+
+- Carnet identificatorio de tu mascota: Te permitirá tenerlo con foto, datos y QR de tu mascota, para tener una identificación oficial en caso de pérdida.
+
+- Historial médico veterinario: Te ayudará a tener un seguimiento completo de su salud.
+
+- Registro de las vacunas: Te proveerá de un listado con las que se aplicó, para llevar más control de su salud.
+
+- Recordatorios de vacunas: Incluye recordatorios de vacunaciones, desparatizaciones y consultas veterinarias para que tu mascota siempre esté bien protegida en su salud.
 - Notificaciones
 
 ### Urls donde son visibles los avances:
@@ -38,11 +46,13 @@ Las características generales son:
 #### UX UI
 - Figma
 #### FRONT END
-- 
-- 
+- React
+- Vite
+- Typescript
+- Redux
+- Tailwind CSS	
 #### BACK END
-- 
-- 
+- .Net	
 
 ### Pasos para instalación y uso:
 [Pasos de instalación]()
@@ -52,14 +62,13 @@ Las características generales son:
 
 ## Colaboradores
 
-| Nombre                        | Rol         | Linkedin                            | 
-|-------------------------------|-------------|-------------------------------------|
-| Elisa L                       | UX UI       |[Linkedin]()                         |
-| xxxxxxxxxxxxxxxxxx            | Front End   |[Linkedin]()                         |
-| xxxxxxxxxxxxxxxxxxxx          | Front End   |[Linkedin]()                         |
-| xxxxxxxxxxxxxxxxxxxxxxxxx     | Front End   |[Linkedin]()                         |
-| xxxxxxxxxxxxxxxxxxxxxxxxxx    | Front End   |[Linkedin]()                         |
-| xxxxxxxxxxxxxxxxxxx           | Back End    |[Linkedin]()                         |
+| Nombre                | Rol         | Linkedin                                                     | 
+|-----------------------|-------------|--------------------------------------------------------------|
+| Elisa L               | UX UI       |[Linkedin](https://www.linkedin.com/in/elilucero)             |
+| Kevin Leon            | Front End   |[Linkedin](https://www.linkedin.com/in/kevin-león-242891217/) |
+| Andersson Godoy       | Front End   |[Linkedin](https://www.linkedin.com/in/andergodoy/)           |
+| Miguel Evangelista    | Front End   |[Linkedin](https://www.linkedin.com/in/miguelaer/)            |
+| Alexander Flores      | Back End    |[Linkedin](https://www.linkedin.com/in/alexanderfloresreyes/) |
 
 
 
