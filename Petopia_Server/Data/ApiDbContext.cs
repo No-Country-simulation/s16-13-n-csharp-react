@@ -5,9 +5,28 @@ namespace Petopia_Server.Data;
 
 public class ApiDbContext(DbContextOptions<ApiDbContext> options) : DbContext(options)
 {
+    public override int SaveChanges()
+    {
+        // Actualiza únicamente la fecha de modificación para todos los modelados que referencian el BaseEntity luego de que son agregados por primera vez
+        var entities = ChangeTracker.Entries()
+            .Where(e => e.State == EntityState.Modified && e.Entity is BaseEntity)
+            .Select(e => e.Entity as BaseEntity);
 
-    // SaveChanges method needs to be added for the BaseEntity to work properly
-    // BCrypt method needs to be added
+        foreach (var entity in entities)
+        {
+            if (entity != null)
+            {
+                entity.DateUpdated = DateTime.UtcNow;
+            }
+        }
+
+        return base.SaveChanges();
+    }
+
+    private static string HashPassword(string password)
+    {
+        return BCrypt.Net.BCrypt.HashPassword(password);
+    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -25,9 +44,37 @@ public class ApiDbContext(DbContextOptions<ApiDbContext> options) : DbContext(op
         builder.Entity<MedicalRecord>()
             .ToTable("MedicalRecords");
 
-        // Pending to define the tables relationships
-        // I will add pre-set users for each member later
+        // Define las relaciones entre las tablas
 
+        builder.Entity<Mascot>()
+            .HasOne(m => m.User)
+            .WithMany(u => u.Mascots)
+            .HasForeignKey(m => m.UserId)
+            .OnDelete(DeleteBehavior.Restrict)
+            .IsRequired();
+
+        builder.Entity<VaccineTracking>()
+            .HasOne(vt => vt.Mascot)
+            .WithMany(m => m.VaccineTrackings)
+            .HasForeignKey(vt => vt.MascotId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+
+        builder.Entity<MedicalRecord>()
+            .HasOne(mr => mr.Mascot)
+            .WithMany(m => m.MedicalRecords)
+            .HasForeignKey(mr => mr.MascotId)
+            .OnDelete(DeleteBehavior.Cascade)
+            .IsRequired();
+
+        // Añadire usuarios pre-configurados de los miembros del proyecto luego
+
+        var demoUsers = new List<User>
+        {
+            new() { Id = -1, Username = "AlexanderFRT", FullName = "Alexander Flores", Password = HashPassword("123456"), Email = "alexanderfrt@example.com"},
+            new() { Id = -2, Username = "Zero", FullName = "Zero Alpha", Password = HashPassword("123456"), Email = "zero@example.com"}
+        };
+        builder.Entity<User>().HasData(demoUsers);
     }
 
     public DbSet<User> Users { get; set; }
