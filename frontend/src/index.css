@@ -41,10 +41,11 @@
     --color-accent-dark-active: 23 102 60;
     --color-accent-darker: 18 79 47;
   }
-  
+
   /* dark color theme */
   @media (prefers-color-scheme: dark) {
-    :root [data-theme="dark"] {
+    
+    .dark {
       /* text and background */
       --color-bg: 2 18 11;
       --color-text: 249 252 250;
