@@ -67,6 +67,10 @@ export default {
           darker: "rgb(var(--color-accent-darker) / <alpha-value>)",
         },
       },
+
+      boxShadow: {
+        modal: '0 0 10px 10px rgb(0 0 0 / 0.1)'
+      },
     },
   },
   plugins: [],
