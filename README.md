@@ -52,7 +52,15 @@ Las características generales son:
 - Redux
 - Tailwind CSS	
 #### BACK END
-- .Net	
+- C#
+- .Net 8
+- ASP .NET
+- Entity Framework
+- Docker
+- PostgreSQL
+#### TESTING
+- Postman
+- Swagger
 
 ### Pasos para instalación y uso:
 [Pasos de instalación]()
@@ -66,9 +74,9 @@ Las características generales son:
 |-----------------------|-------------|--------------------------------------------------------------|--------------------------------------|
 | Elisa L               | UX UI       |[Linkedin](https://www.linkedin.com/in/elilucero)             |https://www.behance.net/elilucero     |
 | Kevin Leon            | Front End   |[Linkedin](https://www.linkedin.com/in/kevin-león-242891217/) |https://k-alex-leon.github.io/my-page/|
-| Andersson Godoy       | Front End   |[Linkedin](https://www.linkedin.com/in/andergodoy/)           |                                      |
+| Andersson Godoy       | Front End   |[Linkedin](https://www.linkedin.com/in/andergodoy/)           |https://github.com/anderssongodoy     |
 | Miguel Evangelista    | Front End   |[Linkedin](https://www.linkedin.com/in/miguelaer/)            |https://www.migueldev.com/            |
-| Alexander Flores      | Back End    |[Linkedin](https://www.linkedin.com/in/alexanderfloresreyes/) |                                      |
+| Alexander Flores      | Back End    |[Linkedin](https://www.linkedin.com/in/alexanderfloresreyes/) |https://github.com/AlexanderFRT       |
 
 
 
