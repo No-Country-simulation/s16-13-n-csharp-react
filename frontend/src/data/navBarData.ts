@@ -15,3 +15,14 @@ export const homeNav = [
 ]
 
 // add here more navbar list data ->
+
+export const loginNav = [
+    {
+        name: 'Registro',
+        link: ''
+    },
+    {
+        name: 'Inicio Sesión',
+        link: ''
+    },
+]

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 interface NavBarProps {
   navList: { name: string; link: string }[];
-  optionsList: string[];
+  optionsList: { name: string; link: string }[];
 }
 
 export default function NavBar({ navList, optionsList }: NavBarProps) {
@@ -19,14 +19,19 @@ export default function NavBar({ navList, optionsList }: NavBarProps) {
       <ul className="flex space-x-4 grow text-lg text-text">
         {navList.map((item, inx) => (
           <li key={inx}>
-            <Link to={item.link} >{item.name}</Link>
+            <Link to={item.link}>{item.name}</Link>
           </li>
         ))}
       </ul>
-      <ul className="flex space-x-4 text-lg text-primary-darker">
+      <ul className="flex space-x-6 text-lg text-primary-darker">
         <li>
           <button onClick={darkMode}>💡</button>
         </li>
+        {optionsList.map((item, inx) => (
+          <li key={inx}>
+            <Link to={item.link}>{item.name}</Link>
+          </li>
+        ))}
       </ul>
     </nav>
   );
