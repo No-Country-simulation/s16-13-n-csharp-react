@@ -62,13 +62,13 @@ Las características generales son:
 
 ## Colaboradores
 
-| Nombre                | Rol         | Linkedin                                                     | 
-|-----------------------|-------------|--------------------------------------------------------------|
-| Elisa L               | UX UI       |[Linkedin](https://www.linkedin.com/in/elilucero)             |
-| Kevin Leon            | Front End   |[Linkedin](https://www.linkedin.com/in/kevin-león-242891217/) |
-| Andersson Godoy       | Front End   |[Linkedin](https://www.linkedin.com/in/andergodoy/)           |
-| Miguel Evangelista    | Front End   |[Linkedin](https://www.linkedin.com/in/miguelaer/)            |
-| Alexander Flores      | Back End    |[Linkedin](https://www.linkedin.com/in/alexanderfloresreyes/) |
+| Nombre                | Rol         | Linkedin                                                     | Portafolio                           |
+|-----------------------|-------------|--------------------------------------------------------------|--------------------------------------|
+| Elisa L               | UX UI       |[Linkedin](https://www.linkedin.com/in/elilucero)             |https://www.behance.net/elilucero     |
+| Kevin Leon            | Front End   |[Linkedin](https://www.linkedin.com/in/kevin-león-242891217/) |https://k-alex-leon.github.io/my-page/|
+| Andersson Godoy       | Front End   |[Linkedin](https://www.linkedin.com/in/andergodoy/)           |                                      |
+| Miguel Evangelista    | Front End   |[Linkedin](https://www.linkedin.com/in/miguelaer/)            |https://www.migueldev.com/            |
+| Alexander Flores      | Back End    |[Linkedin](https://www.linkedin.com/in/alexanderfloresreyes/) |                                      |
 
 
 
