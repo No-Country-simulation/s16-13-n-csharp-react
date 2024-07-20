@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body , #root{
+  min-height: 100dvh;
+}
 @layer base {
   :root {
     /* text and background */
