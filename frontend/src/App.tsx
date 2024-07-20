@@ -1,21 +1,29 @@
+import { Route, Routes } from "react-router";
+import NavBar from "./components/NavBar";
+import MedicalHistory from "./pages/MedicalHistory/MedicalHistory";
 import Home from "./pages/Home/Home";
+import { homeNav } from "./data/navBarData";
+import { BrowserRouter } from "react-router-dom";
+import Footer from "./components/Footer";
+import About from "./pages/About/About";
+import Characteristics from "./pages/Characteristics/Characteristics";
 
-function App() {
-  // const darkMode = () => {
-  //   document.documentElement.classList.toggle("dark");
-  // };
-
+const App: React.FC = () => {
   return (
-    <div className="size-full text-text">
-      {/* <button
-        onClick={darkMode}
-        className="bg-secondary-dark text-primary-light p-2 rounded-md"
-      >
-        Dark mode
-      </button> */}
-      <Home />
+    <div className="text-text">
+      <BrowserRouter>
+        <NavBar navList={homeNav} optionsList={[]} />
+        <Routes>
+          <Route path="/" Component={Home} />
+          <Route path="/medical-history" Component={MedicalHistory} />
+          <Route path="/about" Component={About} />
+          <Route path="/characteristics" Component={Characteristics} />
+        </Routes>
+      </BrowserRouter>
+
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
