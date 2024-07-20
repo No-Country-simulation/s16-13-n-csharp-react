@@ -38,8 +38,8 @@ Las características generales son:
 - Notificaciones
 
 ### Urls donde son visibles los avances:
-- 
-- 
+- https://petopia-deploy.onrender.com/api/UserRegistration
+- https://petopia-deploy.onrender.com/api/UserLogin
 - 
 
 ### Tecnologías utilizadas: 
