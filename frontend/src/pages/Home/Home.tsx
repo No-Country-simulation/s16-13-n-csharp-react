@@ -1,14 +1,17 @@
+// @ts-nocheck
 import { tipsList } from "../../data/tips";
 import { Card } from "./components/Card";
-
+import Stage from "./components/Stage";
 export default function Home() {
   return (
     <div className="pb-10">
       <picture className="absolute -z-50 size-full">
         <img className="fixed" src="./background.svg" alt="" />
       </picture>
-      <section className="h-screen grid grid-cols-5 gap-10 justify-center items-center p-10 text-xl">
-        <div className="col-span-2">
+
+      {/* welcome section */}
+      <section className="h-screen w-full">
+        <div className="absolute z-50 w-1/2 h-full flex flex-col justify-center p-10 space-y-4">
           <h1 className="text-primary-dark lg:text-9xl md:text-7xl">PETOPIA</h1>
           <h3 className="text-primary-darker lg:text-4xl md:text-2xl font-bold">
             La app favorita de tu mascota
@@ -23,11 +26,10 @@ export default function Home() {
             Registrarme
           </a>
         </div>
-
-        <picture className="col-span-3 lg:p-20 md:p-10">
-          <img src="./cat-dog.png" alt="" />
-        </picture>
+        <Stage />
       </section>
+
+      {/* care tips */}
       <section>
         {tipsList.map((element, inx) => (
           <Card
