@@ -7,6 +7,8 @@ import { BrowserRouter } from "react-router-dom";
 import Footer from "./components/Footer";
 import About from "./pages/About/About";
 import Characteristics from "./pages/Characteristics/Characteristics";
+import LoginForm from "./pages/Login/Login";
+import RegisterForm from "./pages/Register/Register";
 
 const App: React.FC = () => {
   return (
@@ -18,6 +20,8 @@ const App: React.FC = () => {
           <Route path="/medical-history" Component={MedicalHistory} />
           <Route path="/about" Component={About} />
           <Route path="/characteristics" Component={Characteristics} />
+          <Route path="/loginForm" Component={LoginForm} />
+          <Route path="/registerForm" Component={RegisterForm} />
         </Routes>
       </BrowserRouter>
 
