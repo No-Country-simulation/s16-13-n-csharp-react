@@ -1,27 +1,28 @@
 import { Route, Routes } from "react-router";
-import NavBar from "./components/NavBar";
-import MedicalHistory from "./pages/MedicalHistory/MedicalHistory";
 import Home from "./pages/Home/Home";
-import { homeNav, loginNav } from "./data/navBarData";
 import { BrowserRouter } from "react-router-dom";
-import Footer from "./components/Footer";
 import About from "./pages/About/About";
 import Characteristics from "./pages/Characteristics/Characteristics";
+import Modal from "./pages/Modal/Modal";
+import { Main } from "./pages/Main";
+import MedicalForm from "./components/forms/MedicalForm";
 
 const App: React.FC = () => {
   return (
     <div className="text-text">
       <BrowserRouter>
-        <NavBar navList={homeNav} optionsList={loginNav} />
         <Routes>
-          <Route path="/" Component={Home} />
-          <Route path="/medical-history" Component={MedicalHistory} />
-          <Route path="/about" Component={About} />
-          <Route path="/characteristics" Component={Characteristics} />
+          <Route path="/*" element={<Main/>}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="characteristics" element={<Characteristics />} />
+          </Route>
+
+          <Route path="/modal" element={<Modal />}>
+            <Route path="medical-history" element={<MedicalForm />}/>
+          </Route>
         </Routes>
       </BrowserRouter>
-
-      <Footer />
     </div>
   );
 };
