@@ -6,6 +6,8 @@ import Characteristics from "./pages/Characteristics/Characteristics";
 import Modal from "./pages/Modal/Modal";
 import { Main } from "./pages/Main";
 import MedicalForm from "./components/forms/MedicalForm";
+import LoginForm from "./pages/Login/Login";
+import RegisterForm from "./pages/Register/Register";
 
 const App: React.FC = () => {
   return (
@@ -16,6 +18,8 @@ const App: React.FC = () => {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="characteristics" element={<Characteristics />} />
+            <Route path="loginForm" Component={LoginForm} />
+          <Route path="registerForm" Component={RegisterForm} />
           </Route>
 
           <Route path="/modal" element={<Modal />}>
