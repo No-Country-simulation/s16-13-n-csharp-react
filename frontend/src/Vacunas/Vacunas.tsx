@@ -10,7 +10,6 @@ const Vacunas: React.FC = () => {
   const [observaciones, setObservaciones] = useState('');
 
   const handleSave = () => {
-    // Aquí puedes manejar la lógica para enviar los datos a la API
     const data = { tipo, fecha, observaciones };
     console.log('Datos para enviar a la API:', data);
   };
