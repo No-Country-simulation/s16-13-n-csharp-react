@@ -9,6 +9,7 @@ import About from "./pages/About/About";
 import Characteristics from "./pages/Characteristics/Characteristics";
 import LoginForm from "./pages/Login/Login";
 import RegisterForm from "./pages/Register/Register";
+import Carnet from "./pages/Carnet/Carnet";
 
 const App: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const App: React.FC = () => {
           <Route path="/characteristics" Component={Characteristics} />
           <Route path="/loginForm" Component={LoginForm} />
           <Route path="/registerForm" Component={RegisterForm} />
+          <Route path="/carnet" Component={Carnet} />
         </Routes>
       </BrowserRouter>
 
