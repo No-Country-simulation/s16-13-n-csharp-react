@@ -8,10 +8,11 @@ import { Main } from "./pages/Main";
 import MedicalForm from "./components/forms/MedicalForm";
 import LoginForm from "./pages/Login/Login";
 import RegisterForm from "./pages/Register/Register";
+import ReminderForm from "./components/forms/ReminderForm";
 
 const App: React.FC = () => {
   return (
-    <div className="text-text">
+    <div className="text-text font-Quicksand">
       <BrowserRouter>
         <Routes>
           <Route path="/*" element={<Main/>}>
@@ -24,6 +25,7 @@ const App: React.FC = () => {
 
           <Route path="/modal" element={<Modal />}>
             <Route path="medical-history" element={<MedicalForm />}/>
+            <Route path="reminders" element={<ReminderForm />}/>
           </Route>
         </Routes>
       </BrowserRouter>
