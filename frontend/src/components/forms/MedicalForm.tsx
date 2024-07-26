@@ -1,69 +1,52 @@
-import MainBtn from "../MainBtn";
+import { FormTitle } from "../FormTitle";
+import { MainInput } from "../MainInput";
 
-export default function MedicalForm(){
+export default function MedicalForm() {
   return (
     <>
-    <h4 className="text-primary-dark-hover w-full text-center font-bold lg:text-2xl md:text-xl">
-      Historial Médico Veterinario
-    </h4>
-      <form className="p-4 flex flex-col space-y-4 w-full mt-4">
-        {/* vet */}
-        <div className="flex flex-col">
-          <label className="text-lg" htmlFor="vet">
-            Profesional Veterinario
-          </label>
-          <input
-            className="border border-primary-normal rounded-md p-1.5"
+      <FormTitle title="Historial Médico Veterinario"/>
+      <form className="p-4 flex flex-col justify-center items-center space-y-4 w-full mt-4 space-y-6">
+        <div className="w-full">
+          {/* vet */}
+          <MainInput
             type="text"
-            name="vet"
+            label="Profecional Veterinario"
+            data={(e) => console.log(e.target.value)}
           />
-        </div>
-        {/* diagnosis */}
-        <div className="flex flex-col">
-          <label className="text-lg" htmlFor="diagnosis">
-            Diagnóstico
-          </label>
-          <input
-            className="border border-primary-normal rounded-md p-1.5"
+          {/* diagnosis */}
+          <MainInput
             type="text"
-            name="diagnosis"
+            label="Diagnóstico"
+            data={(e) => console.log(e)}
           />
-        </div>
-        {/* treatment */}
-        <div className="flex flex-col">
-          <label className="text-lg" htmlFor="treatment">
-            Tratamiento en consultorio
-          </label>
-          <input
-            className="border border-primary-normal rounded-md p-1.5"
+          {/* treatment */}
+          <MainInput
             type="text"
-            name="treatment"
+            label="Tratamiento en consultorio"
+            data={(e) => console.log(e)}
           />
-        </div>
-        {/* home-treatment */}
-        <div className="flex flex-col">
-          <label className="text-lg" htmlFor="homeTreatment">
-            Tratamiento domiciliario
-          </label>
-          <input
-            className="border border-primary-normal rounded-md p-1.5"
+          {/* home-treatment */}
+          <MainInput
             type="text"
-            name="homeTreatment"
+            label="Tratamiento domiciliario"
+            data={(e) => console.log(e)}
           />
-        </div>
-        {/* next appointment */}
-        <div className="flex flex-col">
-          <label className="text-lg" htmlFor="appointment">
-            Próxima visita
-          </label>
-          <input
-            className="border border-primary-normal rounded-md p-1.5"
+          {/* next appointment */}
+          <MainInput
             type="date"
-            name="appointment"
+            label="Próxima visita"
+            data={(e) => console.log(e)}
           />
         </div>
+
+        <button
+          type="submit"
+          className="w-2/3 py-3 text-white bg-[#4A848E] rounded-[10px] font-Poppins font-bold leading-6"
+          // disabled={!acceptTerms}
+        >
+          Guardar
+        </button>
       </form>
-      <MainBtn />
     </>
   );
 }
