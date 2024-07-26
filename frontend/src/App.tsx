@@ -9,6 +9,8 @@ import MedicalForm from "./components/forms/MedicalForm";
 import LoginForm from "./pages/Login/Login";
 import RegisterForm from "./pages/Register/Register";
 import ReminderForm from "./components/forms/ReminderForm";
+import Mascotas from './Mascotas/Mascotas';
+import Vacunas from './Vacunas/Vacunas'
 
 const App: React.FC = () => {
   return (
