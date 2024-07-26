@@ -1,13 +1,23 @@
 import { IoMdClose } from "react-icons/io";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
+import MedicalForm from "../../components/forms/MedicalForm";
 
 export default function Modal() {
+  const navigate = useNavigate();
+
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-[url('/paws.png')] bg-cover bg-no-repeat">
-      <main className="z-50 w-2/5 h-full bg-background rounded-lg shadow-modal shadow-primary-light-active flex flex-col items-end p-10">
-        <IoMdClose color="#7BDCEC" size={20} />
-        <Outlet />
-      </main>
-    </div>
+    <section className="flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-[#F9FCFA]">
+      <div className="relative w-full max-w-[480px] p-[48px] bg-[#F9FCFA] rounded-[25px] custom-box-shadow">
+        <button className="absolute right-[48px]" onClick={() => navigate(-1)}>
+          <IoMdClose size={20} />
+        </button>
+        {/* <h2 className="font-Poppins mb-[83px] text-[40px] font-semibold leading-[48px] text-[#37636A] text-center">
+          Inicia Sesión
+        </h2> */}
+        <div className="mt-10">
+          <Outlet />
+        </div>
+      </div>
+    </section>
   );
 }
