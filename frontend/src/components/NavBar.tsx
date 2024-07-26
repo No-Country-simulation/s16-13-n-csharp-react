@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { HiOutlineLightBulb } from "react-icons/hi";
 
 interface NavBarProps {
   navList: { name: string; link: string }[];
@@ -25,7 +26,7 @@ export default function NavBar({ navList, optionsList }: NavBarProps) {
       </ul>
       <ul className="flex space-x-6 text-lg text-primary-darker">
         <li>
-          <button onClick={darkMode}>💡</button>
+          <HiOutlineLightBulb className="h-full cursor-pointer" onClick={darkMode} />
         </li>
         {optionsList.map((item, inx) => (
           <li key={inx}>
