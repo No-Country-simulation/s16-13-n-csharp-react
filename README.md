@@ -1,20 +1,23 @@
 # **Petopia** 
 ![Logo](https://github.com/elibelu/pruebas/blob/main/img/dog.png)
-Somos una aplicación web que te permitirá recordarte las visitas al veterinario, sus vacunas, desparatizaciones, sus datos personales y tengas el historial médico de tu mascota, ¡todo en un sólo lugar!
+Somos una aplicación web que te permitirá recordarte las visitas al veterinario, sus vacunas, desparatizaciones, puedas tener un QR en caso de extravío, sus datos personales y el historial médico de tu mascota, ¡todo en un sólo lugar!
 Porque tu mascota es parte de tu familia. 
 
 ## Presentación del Sitio
 
-Video DEMO DAY: [Youtube]()
-
 <div align="center" >
   <a> 
    
-![Static Badge]()
-![Static Badge]()
-![Static Badge]()
+![Static Badge](https://github.com/elibelu/pruebas/blob/main/img/5.jpg)
+![Static Badge](https://github.com/elibelu/pruebas/blob/main/img/6.jpg)
+![Static Badge](https://github.com/elibelu/pruebas/blob/main/img/para%20petopia.jpg)
 
 </a>
+
+### Video
+
+<p><a href="https://youtu.be/NcJP6kg5avk?si=HbewX-_1ba9h9o6t" target="_blank"><img src="https://github.com/elibelu/pruebas/blob/main/img/img%20para%20video%20petopia.jpg"/></a></p>
+
 </div>
 
 ## Información Técnica
