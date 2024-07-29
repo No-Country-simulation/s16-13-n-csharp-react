@@ -170,13 +170,13 @@ export default function RegisterForm() {
             </div>
           </div>
           <div className="flex flex-col gap-4 mt-6">
-            <button
+            <Link
+              to="/welcome"
               type="submit"
-              className="w-full py-3 text-white bg-[#4A848E] rounded-[10px] font-Poppins font-bold leading-6"
-              disabled={!acceptTerms}
+              className="w-full py-3 text-white bg-[#4A848E] rounded-[10px] font-Poppins font-bold leading-6 flex justify-center"
             >
               Regístrate
-            </button>
+            </Link>
           </div>
           <div className="mt-4 text-center">
             <p className="leading-6 font-Poppins">

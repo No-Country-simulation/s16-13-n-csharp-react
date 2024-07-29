@@ -1,6 +1,5 @@
 import { IoMdClose } from "react-icons/io";
 import { Outlet, useNavigate } from "react-router";
-import { div } from "three/examples/jsm/nodes/Nodes.js";
 
 export default function Modal() {
   const navigate = useNavigate();

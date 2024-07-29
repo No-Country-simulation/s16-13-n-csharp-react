@@ -4,8 +4,8 @@ import { MainInput } from "../../components/MainInput";
 export default function MedicalForm() {
   return (
     <>
-      <FormTitle title="Historial Médico Veterinario"/>
-      <form className="p-4 flex flex-col justify-center items-center space-y-4 w-full mt-4 space-y-6">
+      <FormTitle title="Historial Médico Veterinario" />
+      <form className="flex flex-col items-center justify-center w-full p-4 mt-4 space-y-4 lg:space-y-6">
         <div className="w-full">
           {/* vet */}
           <MainInput

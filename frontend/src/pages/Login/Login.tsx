@@ -77,12 +77,13 @@ export default function LoginForm() {
             </div>
           </div>
           <div className="flex flex-col gap-4 mt-6">
-            <button
+            <Link
+              to="/carnet"
               type="submit"
-              className="w-full py-3 text-white bg-[#4A848E] rounded-[10px] font-Poppins font-bold leading-6"
+              className=" flex justify-center w-full py-3 text-white bg-[#4A848E] rounded-[10px] font-Poppins font-bold leading-6"
             >
               Inicia sesión
-            </button>
+            </Link>
             <button
               type="button"
               className="flex items-center justify-center w-full py-3 border rounded-[10px] font-Poppins border-[#62B0BD] leading-6"

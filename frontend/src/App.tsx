@@ -9,6 +9,8 @@ import MedicalForm from "./pages/forms/MedicalForm";
 import LoginForm from "./pages/Login/Login";
 import RegisterForm from "./pages/Register/Register";
 import ReminderForm from "./pages/forms/ReminderForm";
+import Carnet from "./pages/Carnet/Carnet";
+import Welcome from "./pages/Welcome/Welcome";
 import VaccinesForm from "./pages/forms/VaccinesForm";
 import PetsForm from "./pages/forms/PetsForm";
 import { useEffect, useState } from "react";
@@ -29,11 +31,15 @@ const App: React.FC = () => {
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="characteristics" element={<Characteristics />} />
-            <Route path="loginForm" element={<LoginForm />} />
-            <Route path="registerForm" element={<RegisterForm />} />
+            <Route path="loginForm" Component={LoginForm} />
+            <Route path="registerForm" Component={RegisterForm} />
+            <Route path="carnet" Component={Carnet} />
+            <Route path="welcome" Component={Welcome} />
           </Route>
 
           <Route path="/modal" element={<Modal />}>
+            <Route path="medical-history" element={<MedicalForm />} />
+            <Route path="reminders" element={<ReminderForm />} />
             <Route path="pets" element={<PetsForm />} />
             <Route path="medical-history" element={<MedicalForm />} />
             <Route path="reminders" element={<ReminderForm />} />

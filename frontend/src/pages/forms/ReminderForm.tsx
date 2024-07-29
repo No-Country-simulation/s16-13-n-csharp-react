@@ -5,14 +5,14 @@ export default function ReminderForm() {
   return (
     <>
       <FormTitle title="Recordatorios" />
-      <form className="p-4 flex flex-col justify-center items-center space-y-4 w-full mt-4 space-y-6">
+      <form className="flex flex-col items-center justify-center w-full p-4 mt-4 space-y-4 lg:space-y-6">
         <div className="w-full">
           {/* reminder */}
           <MainInput
             // type=""
             label="Tipo de recordatorio"
             data={(e) => console.log(e.target.value)}
-            options={{ list: "reminder"}}
+            options={{ list: "reminder" }}
           />
           <datalist id="reminder">
             <option value="Vacunación"></option>
@@ -31,7 +31,7 @@ export default function ReminderForm() {
           <MainInput
             label="Tipo de recordatorio"
             data={(e) => console.log(e.target.value)}
-            options={{ list: "reminder-type"}}
+            options={{ list: "reminder-type" }}
           />
           <datalist id="reminder-type">
             <option value="Al escritorio"></option>
