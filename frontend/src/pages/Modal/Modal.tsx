@@ -1,12 +1,14 @@
 import { IoMdClose } from "react-icons/io";
 import { Outlet, useNavigate } from "react-router";
-import MedicalForm from "../../components/forms/MedicalForm";
+import { div } from "three/examples/jsm/nodes/Nodes.js";
 
 export default function Modal() {
   const navigate = useNavigate();
 
   return (
+    
     <section className="flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-[#F9FCFA]">
+      <img className="absolute min-h-full" src="/paws.png"/>
       <div className="relative w-full max-w-[480px] p-[48px] bg-[#F9FCFA] rounded-[25px] custom-box-shadow">
         <button className="absolute right-[48px]" onClick={() => navigate(-1)}>
           <IoMdClose size={20} />

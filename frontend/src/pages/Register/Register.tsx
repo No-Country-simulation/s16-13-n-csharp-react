@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../auth/AuthContext";
 
 interface InputFieldProps {
   type: string;
@@ -23,7 +24,49 @@ const InputField: React.FC<InputFieldProps> = ({
   </div>
 );
 
+const initialRegisterForm = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  phone: "",
+  password: "",
+  confirmPassword: "",
+};
+
 export default function RegisterForm() {
+  const { loading, error, register } = useAuth();
+
+  const [registerForm, setRegisterForm] = useState(initialRegisterForm);
+  const { firstName, lastName, email, password, confirmPassword } =
+    registerForm;
+
+  const onInputChange = ({ target }: any) => {
+    const { name, value } = target;
+    setRegisterForm({
+      ...registerForm,
+      [name]: value,
+    });
+  };
+
+  const onSubmit = async (e: any) => {
+    e.preventDefault();
+
+    if (!firstName || !lastName || !email || !password) {
+      if (confirmPassword !== password) {
+        console.warn("Passwords are not the same!");
+        return;
+      }
+      console.warn("Complete the form");
+    } else {
+      await register({
+        username: firstName,
+        fullName: `${firstName} ${lastName}`,
+        email,
+        password,
+      });
+    }
+  };
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [acceptTerms, setAcceptTerms] = useState(false);
@@ -42,15 +85,15 @@ export default function RegisterForm() {
 
   return (
     <section className="flex items-center justify-center min-h-screen bg-[url('loginbg.png')] bg-no-repeat bg-cover bg-[#F9FCFA]">
-      <div className="w-full max-w-[480px] p-[48px] bg-[#F9FCFA] rounded-[25px] custom-box-shadow">
+      <div className="w-full h-1/2 max-w-[480px] p-[48px] bg-[#F9FCFA] rounded-[25px] custom-box-shadow">
         <Link className="flex justify-end" to="/">
           <img src="close.svg" alt="Close Button" />
         </Link>
-        <h2 className="font-Poppins mb-[83px] text-[40px] font-semibold leading-[48px] text-[#37636A] text-center">
+        <h2 className="font-Poppins mb-10 text-[35px] font-semibold leading-[48px] text-[#37636A] text-center">
           Regístrate
         </h2>
-        <form>
-          <div className="flex flex-col gap-6">
+        <form onSubmit={onSubmit}>
+          <div className="flex flex-col lg:gap-4">
             <InputField type="text" placeholder="Nombre" required={true} />
             <InputField type="text" placeholder="Apellido" required={true} />
             <InputField type="tel" placeholder="Celular" required={true} />
