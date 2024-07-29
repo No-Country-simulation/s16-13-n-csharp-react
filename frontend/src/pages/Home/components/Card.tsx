@@ -1,4 +1,5 @@
 import React from "react";
+import { IoIosArrowForward } from "react-icons/io";
 
 type Props = {
   position: number;
@@ -16,15 +17,21 @@ export const Card: React.FC<Props> = (props) => {
       } space-x-6`}
     >
       <picture className="basis-1/2">
-        <img className="rounded-xl" src={props.image} alt={props.title} />
+        <img
+          className="rounded-xl h-full"
+          src={props.image}
+          alt={props.title}
+        />
       </picture>
       <section className="grow">
-        <h4 className="text-primary-dark text-bold text-2xl">{props.title}</h4>
+        <h4 className="font-Poppins text-primary-dark text-bold text-2xl">
+          {props.title}
+        </h4>
         <p>{props.description}</p>
-        <a href={`${props.link}`} className="text-secondary-dark">
-          Leer mas <span>+</span>
+        <a href={`${props.link}`} className="flex items-center text-secondary-dark">
+          Leer mas <IoIosArrowForward />
         </a>
       </section>
     </div>
   );
-}
+};

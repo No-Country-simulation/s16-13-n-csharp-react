@@ -95,4 +95,8 @@ body,
   box-shadow: 4px 2px 20px 0px #5CA5B1;
 }
 
+.welcome-shadow {
+  box-shadow: 0px 4px 4px 0px rgba(31, 136, 80, 0.35);
+}
+
 
