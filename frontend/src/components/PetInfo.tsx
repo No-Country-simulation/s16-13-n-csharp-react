@@ -45,7 +45,7 @@ const PetInfo: React.FC<PetInfoProps> = ({
   });
 
   return (
-    <div className="w-[483px] overflow-hidden bg-[#F9FCFA] rounded-[25px] custom-box-shadow p-[40px] flex flex-col gap-[34px]">
+    <div className="w-[483px] overflow-hidden bg-[#F9FCFA] rounded-[25px] custom-box-shadow p-[40px] flex flex-col">
       <div className="flex justify-between">
         <img
           className="object-cover w-[150px] h-[159px]"

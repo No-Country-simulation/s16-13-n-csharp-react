@@ -17,7 +17,7 @@ const Carnet: React.FC = () => {
 
   return (
     <section className=" bg-[#F9FCFA] bg-[url('bgcarnet.png')] bg-no-repeat bg-cover">
-      <div className="flex items-center max-w-[1408px] mx-auto justify-between min-h-screen">
+      <div className="flex items-center max-w-[1408px] mx-auto justify-between min-h-screen px-10">
         <PetInfo {...petData} />
         <CarnetButtons />
       </div>
