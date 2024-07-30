@@ -40,10 +40,8 @@ Las características generales son:
 - Recordatorios de vacunas: Incluye recordatorios de vacunaciones, desparatizaciones y consultas veterinarias para que tu mascota siempre esté bien protegida en su salud.
 - Notificaciones
 
-### Urls donde son visibles los avances:
-- https://petopia-deploy.onrender.com/api/UserRegistration
-- https://petopia-deploy.onrender.com/api/UserLogin
-- 
+### Url Deploy:
+- https://s16-13-n-csharp-react.vercel.app/
 
 ### Tecnologías utilizadas: 
 #### UX UI
@@ -64,9 +62,6 @@ Las características generales son:
 #### TESTING
 - Postman
 - Swagger
-
-### Pasos para instalación y uso:
-[Pasos de instalación]()
 
 [Informar error en Petopia](mailto:esportsmelg@gmail.com)
 
