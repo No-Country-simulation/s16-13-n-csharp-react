@@ -30,7 +30,7 @@ const App: React.FC = () => {
     <div className="text-text font-Quicksand">
       <BrowserRouter>
         <Routes>
-          <Route path="/*" element={<Main />}>
+          <Route path="/*" element={Main(false)}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />
             <Route path="characteristics" element={<Characteristics />} />
@@ -38,7 +38,7 @@ const App: React.FC = () => {
             <Route path="registerForm" Component={RegisterForm} />
           </Route>
 
-          <Route path="/user">
+          <Route path="/user" element={Main(true)}>
             <Route path="welcome" element={<Welcome />} />
             <Route path="carnet" element={<Carnet />} />
             <Route path="modal" element={<Modal />}>

@@ -1,14 +1,19 @@
 import { Outlet } from "react-router";
 import NavBar from "../components/NavBar";
-import { homeNav, loginNav } from "../data/navBarData";
+import { homeNav, userNavigation, loginNav } from "../data/navBarData";
 import Footer from "../components/Footer";
 
-export const Main = () => {
+export const Main = (isAuth: Boolean) => {
   return (
     <>
-      <NavBar navList={homeNav} optionsList={loginNav} />
-      <Outlet />
-      <Footer />
+      <NavBar
+        navList={!isAuth ? homeNav : userNavigation}
+        optionsList={!isAuth ? loginNav : []}
+      />
+      <div className="w-full min-h-screen">
+        <Outlet />
+      </div>
+      {!isAuth && <Footer />}
     </>
   );
 };

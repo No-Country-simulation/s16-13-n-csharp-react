@@ -12,7 +12,7 @@ export default function NavBar({ navList, optionsList }: NavBarProps) {
   };
 
   return (
-    <nav className="w-full h-14 shadow border-b-[1px] py-2 px-4 flex items-center space-x-4 bg-background">
+    <nav className="w-full static h-14 shadow border-b-[1px] py-2 px-4 flex items-center space-x-4 bg-background z-50">
       <picture className="h-2/3">
         <img className="h-full" src="/logo.svg" alt="logo" />
       </picture>

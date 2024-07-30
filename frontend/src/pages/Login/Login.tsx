@@ -78,7 +78,7 @@ export default function LoginForm() {
           </div>
           <div className="flex flex-col gap-4 mt-6">
             <Link
-              to="/carnet"
+              to="../user/welcome"
               type="submit"
               className=" flex justify-center w-full py-3 text-white bg-[#4A848E] rounded-[10px] font-Poppins font-bold leading-6"
             >

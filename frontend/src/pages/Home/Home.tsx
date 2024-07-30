@@ -8,7 +8,7 @@ export default function Home() {
 
       {/* welcome section */}
       <section className="h-screen w-full">
-        <div className="absolute z-50 w-1/2 h-full flex flex-col justify-center p-10 space-y-4">
+        <div className="absolute z-40 w-1/2 h-full flex flex-col justify-center p-10 space-y-4">
           <h1 className="font-Poppins text-primary-dark lg:text-9xl md:text-7xl">PETOPIA</h1>
           <h3 className="font-Poppins text-primary-darker lg:text-4xl md:text-2xl font-bold">
             La app favorita de tu mascota

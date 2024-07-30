@@ -6,7 +6,7 @@ export default function Modal() {
 
   return (
     
-    <section className="flex items-center justify-center min-h-screen bg-no-repeat bg-cover bg-[#F9FCFA]">
+    <section className="flex w-full items-center justify-center h-screen bg-no-repeat bg-cover bg-[#F9FCFA]">
       <img className="absolute min-h-full" src="/paws.png"/>
       <div className="relative w-full max-w-[480px] p-[48px] bg-[#F9FCFA] rounded-[25px] custom-box-shadow">
         <button className="absolute right-[48px]" onClick={() => navigate(-1)}>

@@ -18,7 +18,7 @@ export default function Welcome() {
 
       <Link
         className=" px-6 bg-[#4A848E] py-3 font-Poppins text-white font-bold leading-[36px] rounded-[10px] text-2xl"
-        to="#"
+        to="../modal/pets"
       >
         Empezar
       </Link>
