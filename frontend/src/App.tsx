@@ -14,9 +14,12 @@ import Welcome from "./pages/Welcome/Welcome";
 import VaccinesForm from "./pages/forms/VaccinesForm";
 import PetsForm from "./pages/forms/PetsForm";
 import { useEffect, useState } from "react";
+import { NotFound } from "./pages/NotFound/NotFound";
 
 const App: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
+
+  const userAuth = true;
 
   useEffect(() => {
     setToken(localStorage.getItem("token") ?? null);
@@ -33,18 +36,21 @@ const App: React.FC = () => {
             <Route path="characteristics" element={<Characteristics />} />
             <Route path="loginForm" Component={LoginForm} />
             <Route path="registerForm" Component={RegisterForm} />
-            <Route path="carnet" Component={Carnet} />
-            <Route path="welcome" Component={Welcome} />
           </Route>
 
-          <Route path="/modal" element={<Modal />}>
-            <Route path="medical-history" element={<MedicalForm />} />
-            <Route path="reminders" element={<ReminderForm />} />
-            <Route path="pets" element={<PetsForm />} />
-            <Route path="medical-history" element={<MedicalForm />} />
-            <Route path="reminders" element={<ReminderForm />} />
-            <Route path="vaccines" element={<VaccinesForm />} />
+          <Route path="/user">
+            <Route path="welcome" element={<Welcome />} />
+            <Route path="carnet" element={<Carnet />} />
+            <Route path="modal" element={<Modal />}>
+              <Route path="medical-history" element={<MedicalForm />} />
+              <Route path="reminders" element={<ReminderForm />} />
+              <Route path="pets" element={<PetsForm />} />
+              <Route path="medical-history" element={<MedicalForm />} />
+              <Route path="reminders" element={<ReminderForm />} />
+              <Route path="vaccines" element={<VaccinesForm />} />
+            </Route>
           </Route>
+          <Route path="404" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </div>
