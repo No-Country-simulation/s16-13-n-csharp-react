@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Petopia_Server.Data;
 using Petopia_Server.Models;
+using Petopia_Server.Services;
 using System.ComponentModel.DataAnnotations;
 
 namespace Petopia_Server.Controllers;
@@ -9,10 +10,11 @@ namespace Petopia_Server.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 
-public class UserLoginController(ApiDbContext context) : ControllerBase
+public class UserLoginController(ApiDbContext context, JwtTokenService jwtTokenService) : ControllerBase
 {
     private readonly ApiDbContext _context = context;
-
+    private readonly JwtTokenService _jwtTokenService = jwtTokenService;
+    
     // Endpoint para iniciar sesión
     [HttpPost]
     public async Task<IActionResult> PostLogin([FromBody] UserLoginRequest request)
@@ -35,15 +37,10 @@ public class UserLoginController(ApiDbContext context) : ControllerBase
             return Unauthorized(ModelState);
         }
 
-        // Falta la integración del JWT
-        // var token = _tokenManager.GenerateToken(user);
-
-        // Guarda el token generado para el usuario en el DB
-        // user.SessionToken = token;
-        _context.SaveChanges();
+        var token = _jwtTokenService.GenerateToken(user.Id, user.Username);
 
         // Regresa el token y un mensaje de "Inicio de sesión exitoso"
-        return Ok(new { /*Token = token, */Message = "Inicio de sesión exitoso." });
+        return Ok(new { Token = token, Message = "Inicio de sesión exitoso." });
     }
 
     // Representa una solicitud de inicio de sesión con credenciales de usuario

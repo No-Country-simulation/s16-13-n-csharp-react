@@ -5,7 +5,7 @@ public class MedicalRecord : BaseEntity
     public int MascotId { get; set; }
     public virtual Mascot? Mascot { get; set; }
 
-    public DateOnly AppointmentTime { get; set; }
+    public DateTime AppointmentTimeAndDate { get; set; }
     public string TypeOfMedicalCheckup { get; set; } = string.Empty;
     public string LocationOfMedicalCheckup { get; set; } = string.Empty;
     public string? NameMascotClinic { get; set; }
@@ -17,9 +17,9 @@ public class MedicalRecord : BaseEntity
     }
 
     // Constructor con parámetros para uso en la aplicación
-    public MedicalRecord(DateOnly appointmentTime, string typeOfMedicalCheckup, string locationOfMedicalCheckup)
+    public MedicalRecord(DateTime appointmentTimeAndDate, string typeOfMedicalCheckup, string locationOfMedicalCheckup)
     {
-        AppointmentTime = appointmentTime;
+        AppointmentTimeAndDate = appointmentTimeAndDate;
         TypeOfMedicalCheckup = typeOfMedicalCheckup;
         LocationOfMedicalCheckup = locationOfMedicalCheckup;
     }

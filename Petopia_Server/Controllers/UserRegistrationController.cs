@@ -27,6 +27,11 @@ public class UserRegistrationController(ApiDbContext context) : ControllerBase
             return Conflict(new { message = "El nombre de usuario ya está en uso." });
         }
 
+        if (!IsValidEmail(request.Email))
+        {
+            return BadRequest(new { message = "Correo electrónico no válido." });
+        }
+
         if (await _context.Users.AnyAsync(u => u.Email == request.Email))
         {
             return Conflict(new { message = "El correo electrónico ya está registrado." });
