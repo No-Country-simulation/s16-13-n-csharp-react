@@ -14,7 +14,7 @@ Porque tu mascota es parte de tu familia.
 
 </a>
 
-### Video
+### Video Promocional
 
 https://github.com/user-attachments/assets/e51faed7-c3a1-4627-8184-1923548bf6dc
 
