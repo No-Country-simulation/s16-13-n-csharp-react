@@ -15,6 +15,7 @@ import VaccinesForm from "./pages/forms/VaccinesForm";
 import PetsForm from "./pages/forms/PetsForm";
 import { useEffect, useState } from "react";
 import { NotFound } from "./pages/NotFound/NotFound";
+import Qr from "./pages/QR/Qr";
 
 const App: React.FC = () => {
   const [token, setToken] = useState<string | null>(null);
@@ -49,6 +50,7 @@ const App: React.FC = () => {
               <Route path="reminders" element={<ReminderForm />} />
               <Route path="vaccines" element={<VaccinesForm />} />
             </Route>
+            <Route path="qr" element={<Qr />} />
           </Route>
           <Route path="404" element={<NotFound />} />
         </Routes>
