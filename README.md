@@ -16,13 +16,7 @@ Porque tu mascota es parte de tu familia.
 
 ### Video
 
-<p><a href="https://youtu.be/NcJP6kg5avk?si=HbewX-_1ba9h9o6t" target="_blank"><img src="https://github.com/No-Country-simulation/s16-13-n-csharp-react/blob/main/img%20Petopia/img%20para%20video%20petopia.jpg"/></a></p>
-
-
-
 https://github.com/user-attachments/assets/e51faed7-c3a1-4627-8184-1923548bf6dc
-
-
 
 </div>
 
