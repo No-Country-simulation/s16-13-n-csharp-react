@@ -9,8 +9,9 @@ import axios from "axios";
 import { BASE_URL } from "../../utils/const";
 
 const initialVaccineForm = {
-  mascotId : 8,
+  mascotId: 1,
   vaccineName: "",
+  description: "",
   lastDateOfApplication: "2018-06-28T15:38:24.706Z",
   reminderDate: "2018-06-28T15:38:24.706Z",
 };
@@ -48,8 +49,9 @@ export default function VaccinesForm() {
       );
       console.log("vaccine registration: ", response.status);
       notify_success("El registro fue un exito!");
+      clearForm();
 
-      if (response.status === 201) navigate(-1);
+      if (response.status === 200) navigate(-1);
     } catch (error) {
       console.warn("Error trying to register a vaccine", error);
       notify_error(`Ups! No pudimos registrar la vacuna 😭`);
@@ -61,7 +63,11 @@ export default function VaccinesForm() {
     createVaccine();
   };
 
-  const { vaccineName, lastDateOfApplication, reminderDate } = vaccineForm;
+  const clearForm = () => {
+    setVaccineForm(initialVaccineForm);
+  };
+
+  const { vaccineName, lastDateOfApplication, description } = vaccineForm;
 
   return (
     <>
@@ -87,8 +93,9 @@ export default function VaccinesForm() {
           />
           <MainInput type="hidden" label="Observaciones" data={() => {}} />
           <textarea
-            // value={value}
-            // onChange={onChange}
+            name="description"
+            value={description}
+            onChange={handleOnChange}
             // id={id}
             className="font-Quicksand w-full px-3 py-3 border rounded-[10px] focus:outline-none border-[#62B0BD]"
           />
