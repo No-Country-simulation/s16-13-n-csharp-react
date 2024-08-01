@@ -35,14 +35,6 @@ const initialRegisterForm = {
 export default function RegisterForm() {
   const [registerForm, setRegisterForm] = useState(initialRegisterForm);
 
-  const onInputChange = ({ target }: any) => {
-    const { name, value } = target;
-    setRegisterForm({
-      ...registerForm,
-      [name]: value,
-    });
-  };
-
   const onSubmit = async (e: any) => {
     e.preventDefault();
   };

@@ -33,21 +33,10 @@ const PetInfo: React.FC<PetInfoProps> = ({
   breed,
   sex,
   dateOfBirth,
-  mascotPhoto,
   ownerFullName,
   ownerPhoneNumber,
 }) => {
-  const petData = JSON.stringify({
-    id,
-    mascotName,
-    species,
-    breed,
-    sex,
-    dateOfBirth,
-    mascotPhoto,
-    ownerFullName,
-    ownerPhoneNumber,
-  });
+  
 
   const qrUrl = `https://s16-13-n-csharp-react.vercel.app/qr?id=${id}`
 

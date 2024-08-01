@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { HiOutlineLightBulb } from "react-icons/hi";
 import { useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi";
 
@@ -11,10 +10,6 @@ interface NavBarProps {
 export default function NavBar({ navList, optionsList }: NavBarProps) {
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const darkMode = () => {
-    document.documentElement.classList.toggle("dark");
-  };
 
   return (
     <nav className="w-full static h-14 shadow border-b-[1px] py-2 px-4 flex items-center space-x-4 bg-background z-50">
