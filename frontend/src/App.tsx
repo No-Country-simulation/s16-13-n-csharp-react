@@ -18,7 +18,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useContext, useEffect } from "react";
 import { AuthContext } from "./auth/AuthProvider";
-import Qr from "./pages/QR/Qr";
+import { Qr } from "./pages/QR/Qr";
 
 const App: React.FC = () => {
   const { handlerLogin, login } = useContext(AuthContext);
@@ -33,6 +33,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/*" element={Main(false)}>
             <Route index element={<Home />} />
+            <Route path="qr" element={<Qr />} />
             <Route path="about" element={<About />} />
             <Route path="characteristics" element={<Characteristics />} />
             <Route path="loginForm" Component={LoginForm} />
@@ -50,7 +51,6 @@ const App: React.FC = () => {
               <Route path="reminders" element={<ReminderForm />} />
               <Route path="vaccines" element={<VaccinesForm />} />
             </Route>
-            <Route path="qr" element={<Qr />} />
           </Route>
           <Route path="404" element={<NotFound />} />
         </Routes>
