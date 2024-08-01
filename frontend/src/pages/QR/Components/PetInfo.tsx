@@ -46,38 +46,36 @@ const PetInfo: React.FC<PetInfoProps> = ({
     });
 
     return (
-        <div className="w-[483px] overflow-hidden bg-[#F9FCFA] rounded-[25px] custom-box-shadow p-[40px] flex flex-col">
-            <div className="flex justify-between">
+        <div className="w-full max-w-[500px] bg-[#F9FCFA] rounded-[25px] custom-box-shadow p-[20px] sm:p-[40px] flex flex-col">
+            <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
                 <img
-                    className="object-cover w-[150px] h-[159px]"
+                    className="object-cover w-[150px] h-[159px] rounded-[10px] mb-4 sm:mb-0"
                     src={imageUrl}
                     alt={`${name} the ${species}`}
                 />
-                <div className="w-full flex flex-col gap-[61px] items-center">
-                    <QRCode value={petData} />
+                <div className="w-full flex flex-col gap-4 items-center sm:items-end">
+                    <QRCode value={petData} size={128} />
                     <p className="font-Poppins font-semibold leading-6 text-[#37636A]">
                         Carnet Identificatorio
                     </p>
                 </div>
             </div>
-            <div className="flex flex-col gap-[18px]">
+            <div className="flex flex-col gap-6">
                 <InfoField label="Nombre" value={name} />
-                <div className="flex gap-5">
+                <div className="flex flex-col sm:flex-row gap-5">
                     <InfoField label="Especie" value={species} />
                     <InfoField label="Sexo" value={gender} />
                 </div>
-                <div className="flex gap-5">
+                <div className="flex flex-col sm:flex-row gap-5">
                     <InfoField label="Raza" value={breed} />
                     <InfoField label="Fecha de nacimiento" value={birthDate} />
                 </div>
                 <InfoField label="Familiar" value={owner} />
-                <div className="flex gap-5">
-                    <div className="w-2/3">
-                        <InfoField label="Celular de contacto" value={contactNumber} />
-                    </div>
+                <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
+                    <InfoField label="Celular de contacto" value={contactNumber} />
                     <a
-                        href={`https://wa.me/1${contactNumber.replace(/-/g, "")}`}
-                        className="bg-green-500 text-white px-8 py-2 rounded-lg flex items-center gap-2 w-2/3"
+                        href={`https://wa.me/+54${contactNumber.replace(/-/g, "")}`}
+                        className="bg-green-500 text-white px-6 py-3 rounded-lg flex items-center gap-2 w-full sm:w-auto"
                     >
                         <FaWhatsapp className="w-10 h-10" />
                         Chat con WhatsApp

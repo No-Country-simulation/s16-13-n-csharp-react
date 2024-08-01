@@ -15,11 +15,13 @@ const Qr: React.FC = () => {
     };
 
     return (
-        <section className="bg-[#F9FCFA] bg-no-repeat bg-cover min-h-screen">
-            <div className="max-w-[1408px] mx-auto flex flex-col items-center min-h-screen px-10 py-10">
-                <h1 className="text-[#37636A] text-3xl font-Poppins font-bold mb-5">Haz encontrado a:</h1>
+        <section className="bg-[#F9FCFA] bg-no-repeat bg-cover min-h-screen flex flex-col items-center justify-between">
+            <div className="w-full max-w-[1408px] mx-auto p-10 flex flex-col items-center">
+                <h1 className="text-4xl font-bold mb-8">Haz encontrado a:</h1>
                 <PetInfo {...petData} />
-                <p className="text-[#37636A] text-xl font-Poppins font-bold mt-10">¡Agradecemos que contactes a su familia!</p>
+                <p className="text-2xl mt-8 text-center">
+                    ¡Agradecemos que contactes a su familia!
+                </p>
             </div>
         </section>
     );
