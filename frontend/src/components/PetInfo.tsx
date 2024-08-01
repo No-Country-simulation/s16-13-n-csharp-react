@@ -2,14 +2,15 @@ import React from "react";
 import QRCode from "qrcode.react";
 
 interface PetInfoProps {
-  name: string;
+  id?: number;
+  mascotName: string;
   species: string;
-  gender: string;
+  sex: string;
   breed: string;
-  birthDate: string;
-  owner: string;
-  contactNumber: string;
-  imageUrl: string;
+  dateOfBirth: string;
+  owner?: string;
+  contactNumber?: string;
+  imageUrl?: string;
 }
 
 const InfoField: React.FC<{ label: string; value: string }> = ({
@@ -25,24 +26,17 @@ const InfoField: React.FC<{ label: string; value: string }> = ({
 );
 
 const PetInfo: React.FC<PetInfoProps> = ({
-  name,
+  id = 0,
+  mascotName,
   species,
-  gender,
+  sex,
   breed,
-  birthDate,
-  owner,
-  contactNumber,
-  imageUrl,
+  dateOfBirth,
+  owner = "John Doe",
+  contactNumber = "123-456-7890",
+  imageUrl = "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgByBT5IiAT_a2x9pUVb4VMoOrlzHH7Jrzj-HB5jzHlR4lNLMS",
 }) => {
-  const petData = JSON.stringify({
-    name,
-    species,
-    gender,
-    breed,
-    birthDate,
-    owner,
-    contactNumber,
-  });
+  const petID = `https://s16-13-n-csharp-react.vercel.app/?id=${id}`
 
   return (
     <div className="w-[483px] overflow-hidden bg-[#F9FCFA] rounded-[25px] custom-box-shadow p-[40px] flex flex-col">
@@ -50,24 +44,27 @@ const PetInfo: React.FC<PetInfoProps> = ({
         <img
           className="object-cover w-[150px] h-[159px]"
           src={imageUrl}
-          alt={`${name} the ${species}`}
+          alt={`${mascotName} the ${species}`}
         />
         <div className="w-full flex flex-col gap-[61px] items-center">
-          <QRCode value={petData} />
+          <QRCode value={petID} />
           <p className="font-Poppins font-semibold leading-6 text-[#37636A]">
             Carnet Identificatorio
           </p>
         </div>
       </div>
       <div className="flex flex-col gap-[18px]">
-        <InfoField label="Nombre" value={name} />
+        <InfoField label="Nombre" value={mascotName} />
         <div className="flex gap-5">
           <InfoField label="Especie" value={species} />
-          <InfoField label="Sexo" value={gender} />
+          <InfoField label="Sexo" value={sex} />
         </div>
         <div className="flex gap-5">
           <InfoField label="Raza" value={breed} />
-          <InfoField label="Fecha de nacimiento" value={birthDate} />
+          <InfoField
+            label="Fecha de nacimiento"
+            value={dateOfBirth.substring(0, 9)}
+          />
         </div>
         <InfoField label="Familiar" value={owner} />
         <InfoField label="Celular de contacto" value={contactNumber} />

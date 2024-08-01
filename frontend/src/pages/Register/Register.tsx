@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../auth/AuthContext";
 
 interface InputFieldProps {
   type: string;
@@ -34,11 +33,7 @@ const initialRegisterForm = {
 };
 
 export default function RegisterForm() {
-  const { loading, error, register } = useAuth();
-
   const [registerForm, setRegisterForm] = useState(initialRegisterForm);
-  const { firstName, lastName, email, password, confirmPassword } =
-    registerForm;
 
   const onInputChange = ({ target }: any) => {
     const { name, value } = target;
@@ -50,21 +45,6 @@ export default function RegisterForm() {
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
-
-    if (!firstName || !lastName || !email || !password) {
-      if (confirmPassword !== password) {
-        console.warn("Passwords are not the same!");
-        return;
-      }
-      console.warn("Complete the form");
-    } else {
-      await register({
-        username: firstName,
-        fullName: `${firstName} ${lastName}`,
-        email,
-        password,
-      });
-    }
   };
 
   const [showPassword, setShowPassword] = useState(false);

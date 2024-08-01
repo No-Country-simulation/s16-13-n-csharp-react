@@ -12,9 +12,6 @@ export default function Modal() {
         <button className="absolute right-[48px]" onClick={() => navigate(-1)}>
           <IoMdClose size={20} />
         </button>
-        {/* <h2 className="font-Poppins mb-[83px] text-[40px] font-semibold leading-[48px] text-[#37636A] text-center">
-          Inicia Sesión
-        </h2> */}
         <div className="mt-10">
           <Outlet />
         </div>
