@@ -1,6 +1,6 @@
 export default function About() {
   return (
-    <div className="h-screen flex flex-col px-20 py-10 space-y-10">
+    <div className="h-screen flex flex-col px-20 py-10 space-y-10 bg-[url('../formbg.png')] bg-no-repeat bg-cover">
       <section className="flex flex-col w-full space-y-4">
         <p>
           <span className="text-lg font-bold">El objetivo principal</span> de

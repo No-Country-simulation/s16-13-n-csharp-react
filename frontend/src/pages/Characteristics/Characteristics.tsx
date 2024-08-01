@@ -1,10 +1,10 @@
 export default function Characteristics() {
   return (
-    <div className="h-screen flex flex-col px-20 py-10 text-lg">
+    <div className="h-screen flex flex-col px-20 py-10 text-lg bg-[url('../formbg.png')] bg-no-repeat bg-cover">
       <section className="flex flex-col w-full space-y-10">
         <h5 className="text-lg font-bold">Características de la App:</h5>
 
-        <ul className="space-y-6 px-6">
+        <ul className="px-6 space-y-6">
           <li>
             <p>
               <span className="text-lg font-bold">

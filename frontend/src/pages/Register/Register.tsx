@@ -64,7 +64,7 @@ export default function RegisterForm() {
   };
 
   return (
-    <section className="flex items-center justify-center min-h-screen bg-[url('loginbg.png')] bg-no-repeat bg-cover bg-[#F9FCFA]">
+    <section className="flex items-center justify-center min-h-screen bg-[url('../loginbg.png')] bg-no-repeat bg-cover bg-[#F9FCFA]">
       <div className="w-full h-1/2 max-w-[480px] p-[48px] bg-[#F9FCFA] rounded-[25px] custom-box-shadow">
         <Link className="flex justify-end" to="/">
           <img src="close.svg" alt="Close Button" />
