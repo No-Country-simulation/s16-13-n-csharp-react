@@ -56,7 +56,7 @@ const PetInfo: React.FC<PetInfoProps> = ({
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         <img
           className="object-cover w-[150px] h-[159px] rounded-[10px] mb-4 sm:mb-0"
-          src={mascotPhoto}
+          src={'https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQgByBT5IiAT_a2x9pUVb4VMoOrlzHH7Jrzj-HB5jzHlR4lNLMS'}
           alt={`${mascotName} the ${species}`}
         />
         <div className="w-full flex flex-col gap-4 items-center sm:items-end">
@@ -80,7 +80,7 @@ const PetInfo: React.FC<PetInfoProps> = ({
         <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
           <InfoField label="Celular de contacto" value={ownerPhoneNumber} />
           <a
-            href={`https://wa.me/${ownerFullName.replace(/-/g, "")}`}
+            href={`https://wa.me/${ownerFullName}`}
             className="bg-green-500 text-white px-6 py-3 rounded-lg flex items-center gap-2 w-full sm:w-auto"
           >
             <FaWhatsapp className="w-10 h-10" />

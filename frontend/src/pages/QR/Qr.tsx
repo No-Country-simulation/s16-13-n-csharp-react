@@ -38,9 +38,9 @@ export const Qr = () => {
   useEffect(() => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const idParam = urlSearchParams.get("id");
-    getPetData().then((data) => setPetData({ ...data, id }));
     setId(idParam);
-  }, []);
+    if(id) getPetData().then((data) => setPetData({ ...data, id }));
+  }, [!id]);
 
   // const petData = {
   //   name: "Buddy",
