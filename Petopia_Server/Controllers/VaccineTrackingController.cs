@@ -17,10 +17,16 @@ public class VaccineTrackingController(ApiDbContext context) : ControllerBase
     private readonly ApiDbContext _context = context;
 
     // Endpoint para obtener todas las vacunas del usuario autenticado
-    [HttpGet]
+    [HttpGet("GetVacunas")]
     public async Task<ActionResult<IEnumerable<VaccineTrackingRetrieveDTO>>> GetVaccineTrackings()
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var vaccineTrackings = await _context.VaccineTrackings
             .Include(vt => vt.Mascot)
             .Where(vt => vt.Mascot.UserId == userId)
@@ -37,42 +43,17 @@ public class VaccineTrackingController(ApiDbContext context) : ControllerBase
         return Ok(vaccineTrackings);
     }
 
-    // Endpoint para obtener una vacuna específica por ID
-    [HttpGet("{id}")]
-    public async Task<ActionResult<VaccineTrackingRetrieveDTO>> GetVaccineTracking(int id)
-    {
-        var tracking = await _context.VaccineTrackings
-            .Include(vt => vt.Mascot)
-            .FirstOrDefaultAsync(vt => vt.Id == id);
-        if (tracking == null)
-        {
-            return NotFound();
-        }
-
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-        if (tracking.Mascot.UserId != userId)
-        {
-            return Forbid();
-        }
-
-        var dto = new VaccineTrackingRetrieveDTO
-        {
-            Id = tracking.Id,
-            MascotId = tracking.MascotId,
-            VaccineName = tracking.VaccineName,
-            LastDateOfApplication = tracking.LastDateOfApplication,
-            ReminderDate = tracking.ReminderDate
-        };
-
-        return Ok(dto);
-    }
-
-
     // Endpoint para agregar nuevas vacunas para seguimiento
-    [HttpPost]
+    [HttpPost("PostNuevaVacuna")]
     public async Task<IActionResult> PostVaccineTracking([FromBody] VaccineTrackingCreateDTO trackingDto)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var mascot = await _context.Mascots.FindAsync(trackingDto.MascotId);
         if (mascot == null || mascot.UserId != userId)
         {
@@ -88,8 +69,8 @@ public class VaccineTrackingController(ApiDbContext context) : ControllerBase
         {
             MascotId = trackingDto.MascotId,
             VaccineName = trackingDto.VaccineName,
-            LastDateOfApplication = trackingDto.LastDateOfApplication,
-            ReminderDate = trackingDto.ReminderDate
+            LastDateOfApplication = trackingDto.LastDateOfApplication.Date,
+            ReminderDate = trackingDto.ReminderDate.Date
         };
 
         _context.VaccineTrackings.Add(tracking);
@@ -99,10 +80,16 @@ public class VaccineTrackingController(ApiDbContext context) : ControllerBase
     }
 
     // Endpoint para actualizar el seguimiento de vacunas
-    [HttpPut("{id}")]
+    [HttpPut("EditarVacunaPorID/{id}")]
     public async Task<IActionResult> PutVaccineTracking(int id, [FromBody] VaccineTrackingUpdateDTO trackingDto)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var existingTracking = await _context.VaccineTrackings
             .Include(vt => vt.Mascot)
             .FirstOrDefaultAsync(vt => vt.Id == id);
@@ -126,10 +113,16 @@ public class VaccineTrackingController(ApiDbContext context) : ControllerBase
     }
 
     // Endpoint para borrar algun seguimiento de vacuna
-    [HttpDelete("{id}")]
+    [HttpDelete("BorrarVacunaPorID/{id}")]
     public async Task<IActionResult> DeleteVaccineTracking(int id)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var tracking = await _context.VaccineTrackings
             .Include(vt => vt.Mascot)
             .FirstOrDefaultAsync(vt => vt.Id == id);
@@ -156,10 +149,10 @@ public class VaccineTrackingController(ApiDbContext context) : ControllerBase
         public string VaccineName { get; set; } = string.Empty;
 
         [Required]
-        public DateOnly LastDateOfApplication { get; set; }
+        public DateTime LastDateOfApplication { get; set; }
 
         [Required]
-        public DateOnly ReminderDate { get; set; }
+        public DateTime ReminderDate { get; set; }
     }
 
     public class VaccineTrackingCreateDTO
@@ -172,10 +165,10 @@ public class VaccineTrackingController(ApiDbContext context) : ControllerBase
         public string VaccineName { get; set; } = string.Empty;
 
         [Required]
-        public DateOnly LastDateOfApplication { get; set; }
+        public DateTime LastDateOfApplication { get; set; }
 
         [Required]
-        public DateOnly ReminderDate { get; set; }
+        public DateTime ReminderDate { get; set; }
     }
 
     public class VaccineTrackingUpdateDTO
@@ -185,9 +178,9 @@ public class VaccineTrackingController(ApiDbContext context) : ControllerBase
         public string VaccineName { get; set; } = string.Empty;
 
         [Required]
-        public DateOnly LastDateOfApplication { get; set; }
+        public DateTime LastDateOfApplication { get; set; }
 
         [Required]
-        public DateOnly ReminderDate { get; set; }
+        public DateTime ReminderDate { get; set; }
     }
 }

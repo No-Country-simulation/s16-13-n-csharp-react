@@ -5,11 +5,12 @@ public class Mascot : BaseEntity
     public int UserId { get; set; }
     public virtual User? User { get; set; }
 
-    public string Species { get; set; } = string.Empty;
     public string MascotName { get; set; } = string.Empty;
+    public string Species { get; set; } = string.Empty;
     public string Breed { get; set; } = string.Empty;
-    public int Age { get; set; }
-    public string MascotPhoto { get; set; } = string.Empty;
+    public string Sex { get; set; } = string.Empty;
+    public DateTime DateOfBirth { get; set; }
+    public string? MascotPhoto { get; set; }
 
     public virtual ICollection<VaccineTracking> VaccineTrackings { get; set; } = new List<VaccineTracking>();
     public virtual ICollection<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
@@ -20,12 +21,13 @@ public class Mascot : BaseEntity
     }
 
     // Constructor con parámetros para uso en la aplicación
-    public Mascot(string species, string mascotName, string breed, int age, string mascotPhoto)
+    public Mascot(string mascotName, string species, string breed, string sex, DateTime dateOfBirth, string mascotPhoto)
     {
-        Species = species;
         MascotName = mascotName;
+        Species = species;
         Breed = breed;
-        Age = age;
+        Sex = sex;
+        DateOfBirth = dateOfBirth;
         MascotPhoto = mascotPhoto;
     }
 }

@@ -71,8 +71,8 @@ public class ApiDbContext(DbContextOptions<ApiDbContext> options) : DbContext(op
 
         var demoUsers = new List<User>
         {
-            new() { Id = -1, Username = "AlexanderFRT", FullName = "Alexander Flores", Password = HashPassword("123456"), Email = "alexanderfrt@example.com"},
-            new() { Id = -2, Username = "Zero", FullName = "Zero Alpha", Password = HashPassword("123456"), Email = "zero@example.com"}
+            new() { Id = -1, Username = "AlexanderFRT", FullName = "Alexander Flores", Password = HashPassword("12345678"), Email = "alexanderfrt@example.com"},
+            new() { Id = 1, Username = "Rivera", FullName = "Pedro Rivera", Password = HashPassword("12345678"), Email = "darkrunnersp@gmail.com", PhoneNumber = "+541112345678",  Address = "Av. Corrientes 1234, Buenos Aires, Argentina"}
         };
         builder.Entity<User>().HasData(demoUsers);
     }

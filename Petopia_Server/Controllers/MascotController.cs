@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NpgsqlTypes;
 using Petopia_Server.Data;
 using Petopia_Server.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace Petopia_Server.Controllers;
 
@@ -17,19 +19,26 @@ public class MascotController(ApiDbContext context) : ControllerBase
     private readonly ApiDbContext _context = context;
 
     // Endpoint para obtener todas las mascotas del usuario autenticado
-    [HttpGet]
+    [HttpGet("GetMascotas")]
     public async Task<ActionResult<IEnumerable<MascotRetrieveDTO>>> GetMascots()
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var mascots = await _context.Mascots
             .Where(m => m.UserId == userId)
             .Select(m => new MascotRetrieveDTO
             {
                 Id = m.Id,
-                Species = m.Species,
                 MascotName = m.MascotName,
+                Species = m.Species,
                 Breed = m.Breed,
-                Age = m.Age,
+                Sex = m.Sex,
+                DateOfBirth = m.DateOfBirth,
                 MascotPhoto = m.MascotPhoto
             })
             .ToListAsync();
@@ -38,19 +47,26 @@ public class MascotController(ApiDbContext context) : ControllerBase
     }
 
     // Endpoint para obtener una mascota específica por el ID
-    [HttpGet("{id}")]
+    [HttpGet("GetSeleccionarMascotaPorID/{id}")]
     public async Task<ActionResult<MascotRetrieveDTO>> GetMascot(int id)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var mascot = await _context.Mascots
             .Where(m => m.Id == id && m.UserId == userId)
             .Select(m => new MascotRetrieveDTO
             {
                 Id = m.Id,
-                Species = m.Species,
                 MascotName = m.MascotName,
+                Species = m.Species,
                 Breed = m.Breed,
-                Age = m.Age,
+                Sex = m.Sex,
+                DateOfBirth = m.DateOfBirth,
                 MascotPhoto = m.MascotPhoto
             })
             .FirstOrDefaultAsync();
@@ -64,23 +80,43 @@ public class MascotController(ApiDbContext context) : ControllerBase
     }
 
     // Endpoint para agregar una nueva mascota
-    [HttpPost]
+    [HttpPost("PostNuevaMascota")]
     public async Task<IActionResult> PostMascot([FromBody] MascotCreateDTO mascotDto)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
 
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
         }
 
+        // Chequea si una mascota con todos los mismos atributos ya existe
+        var existingMascot = await _context.Mascots
+            .Where(m => m.UserId == userId
+                     && m.MascotName == mascotDto.MascotName
+                     && m.Species == mascotDto.Species
+                     && m.Breed == mascotDto.Breed
+                     && m.Sex == mascotDto.Sex)
+            .FirstOrDefaultAsync();
+
+        if (existingMascot != null)
+        {
+            return Conflict("Una mascota con todas las mismas características ya existe.");
+        }
+
         var mascot = new Mascot
         {
             UserId = userId,
-            Species = mascotDto.Species,
             MascotName = mascotDto.MascotName,
+            Species = mascotDto.Species,
             Breed = mascotDto.Breed,
-            Age = mascotDto.Age,
+            Sex = mascotDto.Sex,
+            DateOfBirth = mascotDto.DateOfBirth.Date,
             MascotPhoto = mascotDto.MascotPhoto
         };
 
@@ -90,19 +126,26 @@ public class MascotController(ApiDbContext context) : ControllerBase
         return CreatedAtAction(nameof(GetMascot), new { id = mascot.Id }, new MascotRetrieveDTO
         {
             Id = mascot.Id,
-            Species = mascot.Species,
-            MascotName = mascot.MascotName,
-            Breed = mascot.Breed,
-            Age = mascot.Age,
+            MascotName = mascotDto.MascotName,
+            Species = mascotDto.Species,
+            Breed = mascotDto.Breed,
+            Sex = mascotDto.Sex,
+            DateOfBirth = mascotDto.DateOfBirth,
             MascotPhoto = mascot.MascotPhoto
         });
     }
 
     // Endpoint para actualizar una mascota existente
-    [HttpPut("{id}")]
+    [HttpPut("EditarMascotaPorID/{id}")]
     public async Task<IActionResult> PutMascot(int id, [FromBody] MascotUpdateDTO mascotDto)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var existingMascot = await _context.Mascots
             .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
 
@@ -117,10 +160,11 @@ public class MascotController(ApiDbContext context) : ControllerBase
         }
 
         // Update the mascot's properties
-        existingMascot.Species = mascotDto.Species;
         existingMascot.MascotName = mascotDto.MascotName;
+        existingMascot.Species = mascotDto.Species;
         existingMascot.Breed = mascotDto.Breed;
-        existingMascot.Age = mascotDto.Age;
+        existingMascot.Sex = mascotDto.Sex;
+        existingMascot.DateOfBirth = mascotDto.DateOfBirth;
         existingMascot.MascotPhoto = mascotDto.MascotPhoto;
 
         await _context.SaveChangesAsync();
@@ -129,10 +173,16 @@ public class MascotController(ApiDbContext context) : ControllerBase
     }
 
     // Endpoint para borrar una mascota
-    [HttpDelete("{id}")]
+    [HttpDelete("BorrarMascotaPorID/{id}")]
     public async Task<IActionResult> DeleteMascot(int id)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var mascot = await _context.Mascots
             .FirstOrDefaultAsync(m => m.Id == id && m.UserId == userId);
 
@@ -151,60 +201,69 @@ public class MascotRetrieveDTO
 {
     public int Id { get; set; }
 
-    [Required]
-    [StringLength(50)]
-    public string Species { get; set; } = string.Empty;
-
-    [Required]
     [StringLength(50)]
     public string MascotName { get; set; } = string.Empty;
 
     [StringLength(50)]
+    public string Species { get; set; } = string.Empty;
+
+    [StringLength(50)]
     public string Breed { get; set; } = string.Empty;
 
-    [Range(0, 100)]
-    public int Age { get; set; }
+    [StringLength(15)]
+    public string Sex { get; set; } = string.Empty;
+
+    [Required]
+    public DateTime DateOfBirth { get; set; }
 
     [Url]
-    public string MascotPhoto { get; set; } = string.Empty;
+    public string? MascotPhoto { get; set; }
 }
 
 public class MascotCreateDTO
 {
     [Required]
     [StringLength(50)]
-    public string Species { get; set; } = string.Empty;
+    public string MascotName { get; set; } = string.Empty;
 
     [Required]
     [StringLength(50)]
-    public string MascotName { get; set; } = string.Empty;
+    public string Species { get; set; } = string.Empty;
 
     [StringLength(50)]
     public string Breed { get; set; } = string.Empty;
 
-    [Range(0, 100)]
-    public int Age { get; set; }
+    [Required]
+    [StringLength(15)]
+    public string Sex { get; set; } = string.Empty;
+
+    [Required]
+    public DateTime DateOfBirth { get; set; }
 
     [Url]
-    public string MascotPhoto { get; set; } = string.Empty;
+    public string? MascotPhoto { get; set; }
 }
 
 public class MascotUpdateDTO
 {
     [Required]
     [StringLength(50)]
-    public string Species { get; set; } = string.Empty;
+    public string MascotName { get; set; } = string.Empty;
 
     [Required]
     [StringLength(50)]
-    public string MascotName { get; set; } = string.Empty;
+    public string Species { get; set; } = string.Empty;
 
     [StringLength(50)]
     public string Breed { get; set; } = string.Empty;
 
-    [Range(0, 100)]
-    public int Age { get; set; }
+    [Required]
+    [StringLength(15)]
+    public string Sex { get; set; } = string.Empty;
+
+    [Required]
+    public DateTime DateOfBirth { get; set; }
 
     [Url]
-    public string MascotPhoto { get; set; } = string.Empty;
+    public string? MascotPhoto { get; set; }
 }

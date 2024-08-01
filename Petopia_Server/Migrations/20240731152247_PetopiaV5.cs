@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Petopia_Server.Migrations
 {
     /// <inheritdoc />
-    public partial class PetopiaV1 : Migration
+    public partial class PetopiaV5 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,8 +24,8 @@ namespace Petopia_Server.Migrations
                     FullName = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "integer", nullable: true),
-                    Address = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: false),
+                    Address = table.Column<string>(type: "text", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -41,11 +41,12 @@ namespace Petopia_Server.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    Species = table.Column<string>(type: "text", nullable: false),
                     MascotName = table.Column<string>(type: "text", nullable: false),
+                    Species = table.Column<string>(type: "text", nullable: false),
                     Breed = table.Column<string>(type: "text", nullable: false),
-                    Age = table.Column<int>(type: "integer", nullable: false),
-                    MascotPhoto = table.Column<string>(type: "text", nullable: false),
+                    Sex = table.Column<string>(type: "text", nullable: false),
+                    DateOfBirth = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    MascotPhoto = table.Column<string>(type: "text", nullable: true),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -67,7 +68,7 @@ namespace Petopia_Server.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     MascotId = table.Column<int>(type: "integer", nullable: false),
-                    AppointmentTime = table.Column<DateOnly>(type: "date", nullable: false),
+                    AppointmentTimeAndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     TypeOfMedicalCheckup = table.Column<string>(type: "text", nullable: false),
                     LocationOfMedicalCheckup = table.Column<string>(type: "text", nullable: false),
                     NameMascotClinic = table.Column<string>(type: "text", nullable: true),
@@ -94,8 +95,8 @@ namespace Petopia_Server.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     MascotId = table.Column<int>(type: "integer", nullable: false),
                     VaccineName = table.Column<string>(type: "text", nullable: false),
-                    LastDateOfApplication = table.Column<DateOnly>(type: "date", nullable: false),
-                    ReminderDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    LastDateOfApplication = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ReminderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateAdded = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     DateUpdated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
@@ -115,8 +116,8 @@ namespace Petopia_Server.Migrations
                 columns: new[] { "Id", "Address", "DateAdded", "DateUpdated", "Email", "FullName", "Password", "PhoneNumber", "Username" },
                 values: new object[,]
                 {
-                    { -2, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "zero@example.com", "Zero Alpha", "$2a$11$sIBlOe6QKsr/hVpfYGkO0.gIycZprWnjn0KcQq8WI.cc.8.dFdE9e", null, "Zero" },
-                    { -1, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "alexanderfrt@example.com", "Alexander Flores", "$2a$11$ogYVQf0MB6/luQj/5KPacO9ctnGc.MHc49QsCQ9CoXlikD7klNLOy", null, "AlexanderFRT" }
+                    { -1, "", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "alexanderfrt@example.com", "Alexander Flores", "$2a$11$ZBNABosglF3FM/50xAcRwuoveNU9ZGj5o3a45YMGw2icd7cgpL6O2", "", "AlexanderFRT" },
+                    { 1, "Av. Corrientes 1234, Buenos Aires, Argentina", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "darkrunnersp@gmail.com", "Pedro Rivera", "$2a$11$0u3DdoYTpOgCKScN55huPuWTs4OjsSyL6KhRC0HIXq34xnwdH.Cyu", "+541112345678", "Rivera" }
                 });
 
             migrationBuilder.CreateIndex(

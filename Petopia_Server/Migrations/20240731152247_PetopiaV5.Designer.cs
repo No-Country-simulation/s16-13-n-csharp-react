@@ -12,8 +12,8 @@ using Petopia_Server.Data;
 namespace Petopia_Server.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240719041450_PetopiaV1")]
-    partial class PetopiaV1
+    [Migration("20240731152247_PetopiaV5")]
+    partial class PetopiaV5
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,14 +33,14 @@ namespace Petopia_Server.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("Age")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Breed")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateAdded")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DateUpdated")
@@ -51,6 +51,9 @@ namespace Petopia_Server.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("MascotPhoto")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sex")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -76,8 +79,8 @@ namespace Petopia_Server.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateOnly>("AppointmentTime")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("AppointmentTimeAndDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DateAdded")
                         .HasColumnType("timestamp with time zone");
@@ -118,6 +121,7 @@ namespace Petopia_Server.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateAdded")
@@ -138,8 +142,9 @@ namespace Petopia_Server.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("PhoneNumber")
-                        .HasColumnType("integer");
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -153,22 +158,26 @@ namespace Petopia_Server.Migrations
                         new
                         {
                             Id = -1,
+                            Address = "",
                             DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "alexanderfrt@example.com",
                             FullName = "Alexander Flores",
-                            Password = "$2a$11$ogYVQf0MB6/luQj/5KPacO9ctnGc.MHc49QsCQ9CoXlikD7klNLOy",
+                            Password = "$2a$11$ZBNABosglF3FM/50xAcRwuoveNU9ZGj5o3a45YMGw2icd7cgpL6O2",
+                            PhoneNumber = "",
                             Username = "AlexanderFRT"
                         },
                         new
                         {
-                            Id = -2,
+                            Id = 1,
+                            Address = "Av. Corrientes 1234, Buenos Aires, Argentina",
                             DateAdded = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "zero@example.com",
-                            FullName = "Zero Alpha",
-                            Password = "$2a$11$sIBlOe6QKsr/hVpfYGkO0.gIycZprWnjn0KcQq8WI.cc.8.dFdE9e",
-                            Username = "Zero"
+                            Email = "darkrunnersp@gmail.com",
+                            FullName = "Pedro Rivera",
+                            Password = "$2a$11$0u3DdoYTpOgCKScN55huPuWTs4OjsSyL6KhRC0HIXq34xnwdH.Cyu",
+                            PhoneNumber = "+541112345678",
+                            Username = "Rivera"
                         });
                 });
 
@@ -186,14 +195,14 @@ namespace Petopia_Server.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly>("LastDateOfApplication")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("LastDateOfApplication")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("MascotId")
                         .HasColumnType("integer");
 
-                    b.Property<DateOnly>("ReminderDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("ReminderDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("VaccineName")
                         .IsRequired()

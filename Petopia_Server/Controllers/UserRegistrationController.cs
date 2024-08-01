@@ -45,6 +45,8 @@ public class UserRegistrationController(ApiDbContext context) : ControllerBase
             FullName = request.FullName,
             Password = hashedPassword,
             Email = request.Email,
+            PhoneNumber = NormalizePhoneNumber(request.PhoneNumber),
+            Address = request.Address,
         };
 
         _context.Users.Add(newUser);
@@ -71,6 +73,15 @@ public class UserRegistrationController(ApiDbContext context) : ControllerBase
         return BCrypt.Net.BCrypt.HashPassword(password);
     }
 
+    private static string NormalizePhoneNumber(string phoneNumber)
+    {
+        if (string.IsNullOrEmpty(phoneNumber))
+            return phoneNumber;
+
+        // Remueve todos los carácteres no númericos excepto el +
+        return "+" + new string(phoneNumber.Where(c => char.IsDigit(c) || c == '+').ToArray());
+    }
+
     public class UserRegistrationRequest
     {
         [Required]
@@ -88,5 +99,14 @@ public class UserRegistrationController(ApiDbContext context) : ControllerBase
         [Required]
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(20, MinimumLength = 6)]
+        [RegularExpression(@"^\+?[1-9]\d{0,2}(\s?\d{1,4}\s?){1,4}$", ErrorMessage = "Formato inválido de número de teléfono.")]
+        public string PhoneNumber { get; set; } = string.Empty;
+
+        [Required]
+        [StringLength(100, MinimumLength = 1)]
+        public string Address { get; set; } = string.Empty;
     }
 }

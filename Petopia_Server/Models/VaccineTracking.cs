@@ -6,8 +6,8 @@ public class VaccineTracking : BaseEntity
     public virtual Mascot? Mascot { get; set; }
 
     public string VaccineName { get; set; } = string.Empty;
-    public DateOnly LastDateOfApplication { get; set; }
-    public DateOnly ReminderDate { get; set; }
+    public DateTime LastDateOfApplication { get; set; }
+    public DateTime ReminderDate { get; set; }
 
     // Constructor sin parámetros para EF Core
     public VaccineTracking()
@@ -15,7 +15,7 @@ public class VaccineTracking : BaseEntity
     }
 
     // Constructor con parámetros para uso en la aplicación
-    public VaccineTracking(string vaccineName, DateOnly lastDateOfApplication, DateOnly reminderDate)
+    public VaccineTracking(string vaccineName, DateTime lastDateOfApplication, DateTime reminderDate)
     {
         VaccineName = vaccineName;
         LastDateOfApplication = lastDateOfApplication;

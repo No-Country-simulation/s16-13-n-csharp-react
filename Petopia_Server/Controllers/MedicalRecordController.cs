@@ -18,10 +18,16 @@ public class MedicalRecordController(ApiDbContext context) : ControllerBase
     private readonly ApiDbContext _context = context;
 
     // Endpoint para obtener los registros médicos en base al ID del usuario y al ID de la mascota
-    [HttpGet]
+    [HttpGet("GetRegistrosMedicos")]
     public async Task<IActionResult> GetMedicalRecords([FromQuery] int mascotId)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var mascot = await _context.Mascots
             .FirstOrDefaultAsync(m => m.Id == mascotId && m.UserId == userId);
 
@@ -48,10 +54,16 @@ public class MedicalRecordController(ApiDbContext context) : ControllerBase
     }
 
     // Endpoint para agregar nuevos registros médicos
-    [HttpPost]
+    [HttpPost("PostNuevoRegistroMedico")]
     public async Task<IActionResult> PostMedicalRecord([FromBody] MedicalRecordCreateDTO recordDto)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var mascot = await _context.Mascots.FindAsync(recordDto.MascotId);
         if (mascot == null || mascot.UserId != userId)
         {
@@ -80,10 +92,16 @@ public class MedicalRecordController(ApiDbContext context) : ControllerBase
     }
 
     // Endpoint para actualizar registros médicos existentes
-    [HttpPut("{id}")]
+    [HttpPut("EditarRegistroMedicoPorID/{id}")]
     public async Task<IActionResult> PutMedicalRecord(int id, [FromBody] MedicalRecordUpdateDTO recordDto)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var existingRecord = await _context.MedicalRecords
             .Include(mr => mr.Mascot)
             .FirstOrDefaultAsync(mr => mr.Id == id);
@@ -104,10 +122,16 @@ public class MedicalRecordController(ApiDbContext context) : ControllerBase
     }
 
     // Endpoint para eliminar los registros médicos
-    [HttpDelete("{id}")]
+    [HttpDelete("BorrarRegistroMedicoPorID/{id}")]
     public async Task<IActionResult> DeleteMedicalRecord(int id)
     {
-        var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+        string userIdString = User.FindFirstValue("userId");
+
+        if (string.IsNullOrEmpty(userIdString) || !int.TryParse(userIdString, out int userId))
+        {
+            return Unauthorized("El reclamo del ID de usuario está faltante o es inválido.");
+        }
+
         var record = await _context.MedicalRecords
             .Include(mr => mr.Mascot)
             .FirstOrDefaultAsync(mr => mr.Id == id);
