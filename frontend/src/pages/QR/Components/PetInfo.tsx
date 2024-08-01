@@ -74,7 +74,7 @@ const PetInfo: React.FC<PetInfoProps> = ({
                 <div className="flex flex-col sm:flex-row gap-5 items-center sm:items-start">
                     <InfoField label="Celular de contacto" value={contactNumber} />
                     <a
-                        href={`https://wa.me/+54${contactNumber.replace(/-/g, "")}`}
+                        href={`https://wa.me/${contactNumber.replace(/-/g, "")}`}
                         className="bg-green-500 text-white px-6 py-3 rounded-lg flex items-center gap-2 w-full sm:w-auto"
                     >
                         <FaWhatsapp className="w-10 h-10" />
