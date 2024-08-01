@@ -13,18 +13,18 @@ import Carnet from "./pages/Carnet/Carnet";
 import Welcome from "./pages/Welcome/Welcome";
 import VaccinesForm from "./pages/forms/VaccinesForm";
 import PetsForm from "./pages/forms/PetsForm";
-import { useEffect, useState } from "react";
 import { NotFound } from "./pages/NotFound/NotFound";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "./auth/AuthProvider";
 
 const App: React.FC = () => {
-  const [token, setToken] = useState<string | null>(null);
-
-  const userAuth = true;
+  const { handlerLogin, login } = useContext(AuthContext);
 
   useEffect(() => {
-    setToken(localStorage.getItem("token") ?? null);
-    console.log("token app: ", token);
-  }, [token]);
+    handlerLogin();
+  }, [!login.isAuth]);
 
   return (
     <div className="text-text font-Quicksand">
@@ -53,6 +53,7 @@ const App: React.FC = () => {
           <Route path="404" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 };
