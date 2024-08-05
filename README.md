@@ -41,7 +41,10 @@ Las características generales son:
 - Notificaciones
 
 ### Url Deploy:
-- https://s16-13-n-csharp-react.vercel.app/
+https://s16-13-n-csharp-react.vercel.app/
+
+### Demo Day:
+[Video](https://youtu.be/KjMzivlX0C4)
 
 ### Tecnologías utilizadas: 
 #### UX UI
